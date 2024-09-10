@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CourseRegister>
+
+<h2>Registration List</h2>
+<a asp-action="Create" class="btn btn-primary">Add Registration</a>
+<hr>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.RegisterId)</th>
+            @* Tablolar arası join işlemi yapıyoruz ikisini birleştirmek için!!! *@
+            <th>@Html.DisplayNameFor(m => m.Student.StudentName)</th>
+            <th>@Html.DisplayNameFor(m => m.Course.Title)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.StudentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Title)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CourseId" class="btn btn-sm btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.CourseId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
